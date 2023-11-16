@@ -5,7 +5,7 @@ const SignUp = () => {
   return (
     <div>
         <div>SignUp</div>
-        <Form SignUp ></Form>
+        <Form signUp ></Form>
 
     </div>
   )
