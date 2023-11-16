@@ -27,7 +27,7 @@ const products = [
   // More products...
 ]
 
-export default function ShopingCart() {
+export default function Shoping_Cart() {
   const [open, setOpen] = useState(true)
 
   return (
