@@ -50,9 +50,12 @@ export default function Navbar() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
+        <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+            Home
+          </a>
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              Products
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -101,11 +104,11 @@ export default function Navbar() {
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
+          <a href="/about" className="text-sm font-semibold leading-6 text-gray-900">
+            About
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+          <a href="/contact" className="text-sm font-semibold leading-6 text-gray-900">
+           Contact
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Company
