@@ -17,7 +17,7 @@ export default function Form({signUp, signUpHandler , signInHandler}) {
         const password = passwordRef.current.value;
         if(!signUp){
         //  return signInHandler(email, password);
-      return  axios.post("/login",{
+      return axios.post("login",{
             email, password
         }).then(response => setLoggedIn(response.data)).catch(err => console.log(err))
     
@@ -25,7 +25,7 @@ export default function Form({signUp, signUpHandler , signInHandler}) {
         const firstName = firstNameRef.current.value;
         const lastName = lastNameRef.current.value;
         // signUpHandler(firstName, lastName, email, password)
-        axios.post("/signup",{
+        axios.post("signup",{
             firstName, lastName, email, password
         }).then(response => setSignUp(response.data)).catch(err => console.log(err))
 
