@@ -1,20 +1,9 @@
-import React ,{ useState } from 'react'
+import React ,{ useContext, useState } from 'react'
 import ProductCard from "../../component/ProductCard"
-import axios from "../../axios";
-import { useNavigate } from 'react-router-dom';
+import ProductContext from '../../context/productContext';
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
-
-  const getProductHandler = (mame) => {
-    const productName = name.toLowerCase();
-    axios
-      .get(`/products/${productName}`)
-      .then((response) => setProducts(response.data))
-      .catch((err) => console.log(err));
-    navigate(`/products${productName}`);
-  };
-
+const allProducts = useContext(ProductContext);
+const products = allProducts.products;
   return (<div>
     <div className="pl-20 font-bold text-[20px] p-3 bg-orange-300">Home</div>
     <div className="flex justify-center items-center flex-wrap gap-10 bg-orange-200 pt-8">
