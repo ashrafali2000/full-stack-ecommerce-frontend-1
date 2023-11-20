@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import logo from "../../images/stylo logo.png"
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import {
@@ -11,11 +11,13 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import ProductContext from '../../context/productContext'
+import axios from '../../axios'
 
 const products = [
-  { name: 'Shoes', description: 'Get a better understanding of your traffic', href: '/products/shoes', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
+  { name: 'Shoes', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+  { name: 'Jewellery', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
   { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
   { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
   { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
@@ -30,7 +32,20 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+const searchProduct = useContext(ProductContext);
+const allProducts = searchProduct.getAllProducts;
+
+
+const getProductHandler = (data) => {
+  const productName = data.toLowerCase();
+  axios
+    .get(`/products/${productName}`)
+    .then((response) => allProducts(response.data))
+    .catch((err) => console.log(err));
+  navigate(`/products${productName}`);
+};
 
   return (
     <div>
@@ -84,10 +99,10 @@ export default function Navbar() {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-900">
+                        <Link to={item.href} className="block font-semibold text-gray-900" onClick={()=> getProductHandler(item.name)}>
                           {item.name}
                           <span className="absolute inset-0" />
-                        </a>
+                        </Link>
                         <p className="mt-1 text-gray-600">{item.description}</p>
                       </div>
                     </div>
