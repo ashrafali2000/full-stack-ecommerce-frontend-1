@@ -1,7 +1,9 @@
 import logo from "../../images/stylo logo.png"
 import { useRef, useState } from "react"
 import { Alert , Space, Button} from "antd"
-import axios from "../../axios/index"
+import {Link } from "react-router-dom"
+import axiosLib from "../../axios";
+
 
 export default function Form({signUp, signUpHandler , signInHandler}) {
     const [loggedIn, setLoggedIn] = useState("");
@@ -17,15 +19,15 @@ export default function Form({signUp, signUpHandler , signInHandler}) {
         const password = passwordRef.current.value;
         if(!signUp){
         //  return signInHandler(email, password);
-      return axios.post("login",{
+      return axiosLib.post("user/login",{
             email, password
-        }).then(response => setLoggedIn(response.data)).catch(err => console.log(err))
+        }).then(response => setLoggedIn(response.data.user.message)).catch(err => console.log(err.response.data.message))
     
         }
         const firstName = firstNameRef.current.value;
         const lastName = lastNameRef.current.value;
         // signUpHandler(firstName, lastName, email, password)
-        axios.post("signup",{
+        axiosLib.post("user/signup",{
             firstName, lastName, email, password
         }).then(response => setSignUp(response.data)).catch(err => console.log(err))
 
@@ -157,11 +159,11 @@ export default function Form({signUp, signUpHandler , signInHandler}) {
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{' '}
-             {!signUp ? <a href="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+             {!signUp ? <Link to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Sign up
-              </a> : <a href="/signin" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              </Link> : <Link to="/signin" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Sign in
-              </a>}
+              </Link>}
             </p>
           </div>
           
