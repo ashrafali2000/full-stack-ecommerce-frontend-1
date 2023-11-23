@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams  } from "react-router-dom";
 import Navbar from "./component/navbar";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -10,8 +10,10 @@ import ShopingCart from "./pages/shopingCart";
 import ProductContext from "./context/productContext";
 import { useState } from "react";
 
+
 function App() {
   const [products, setProducts] = useState([]);
+  let { productTitle } = useParams();
 
   const getAllProducts = (data) => {
     setProducts(data)
@@ -29,8 +31,8 @@ function App() {
          <Route index element = {<Home></Home>}/>
          <Route path="about" element = {<About></About>}/>
          <Route path="contact" element = {<Contact></Contact>}/>
-         <Route path="products" element = {<Products></Products>
-          }/>
+         <Route path={`/products/:${productTitle}`} element = {<Products></Products>
+          } />
          <Route path="signin" element = {<SignIn></SignIn>}/>
          <Route path="signup" element = {<SignUp></SignUp>}/>
          <Route path="shopingcart" element = {<ShopingCart></ShopingCart>}/>
