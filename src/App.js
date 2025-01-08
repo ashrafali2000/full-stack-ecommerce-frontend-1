@@ -29,13 +29,13 @@ function App() {
       <Routes>
         <Route path="/" element = {<Navbar></Navbar>}>
          <Route index element = {<Home></Home>}/>
-         <Route path="about" element = {<About></About>}/>
-         <Route path="contact" element = {<Contact></Contact>}/>
+         <Route path="/about" element = {<About></About>}/>
+         <Route path="/contact" element = {<Contact></Contact>}/>
          <Route path={`/products/:${productTitle}`} element = {<Products></Products>
           } />
-         <Route path="signin" element = {<SignIn></SignIn>}/>
-         <Route path="signup" element = {<SignUp></SignUp>}/>
-         <Route path="shopingcart" element = {<ShopingCart></ShopingCart>}/>
+         <Route path="/signin" element = {<SignIn></SignIn>}/>
+         <Route path="/signup" element = {<SignUp></SignUp>}/>
+         <Route path="/shopingcart" element = {<ShopingCart></ShopingCart>}/>
 
         </Route>
       </Routes>
