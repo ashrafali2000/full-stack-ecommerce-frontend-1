@@ -41,7 +41,7 @@ const allProducts = searchProduct.getAllProducts;
 const getProductHandler = (data) => {
   const productName = data.toLowerCase();
   axiosLib
-    .get(`/products/${productName}`)
+    .get(`/products/category/${productName}`)
     .then((response) => allProducts(response.data))
     .catch((err) => console.log(err));
   navigate(`/products/${productName}`);
