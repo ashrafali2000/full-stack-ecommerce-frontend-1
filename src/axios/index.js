@@ -1,5 +1,5 @@
 import axios from "axios";
   const axiosLib = axios.create({
-    baseURL:"http://localhost:8000/"
+    baseURL:"https://full-stack-ecommerce-backend-1.vercel.app"
 })
 export default axiosLib;
